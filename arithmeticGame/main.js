@@ -45,10 +45,19 @@ getInitialState() {
 
   },
 
+  nextProblem() {
+    this.newProblem();
+    document.getElementById("result").innerHTML = '';
+  },
+
   submit() {
     let { newNumber, answer } = this.state;
     let number = parseInt(newNumber);
     let message;
+    if (!answer || !number) {
+      console.log('no problem');
+      return;
+    }
     console.log('number:', number);
 
     if (number === answer) {
@@ -63,7 +72,8 @@ getInitialState() {
     // document.getElementById("equation").innerHTML = num1 + "+" + num2;
 
     this.clearVal();
-    this.newProblem();
+    document.getElementById("equation").innerHTML = '';
+    window.setTimeout(this.nextProblem, 5000);
 
   },
 
