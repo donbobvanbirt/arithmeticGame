@@ -50,6 +50,16 @@ getInitialState() {
     document.getElementById("result").innerHTML = '';
   },
 
+  skip() {
+    let { answer } = this.state;
+    if (!answer) {
+      return;
+    }
+    let correctAnswer = `Answer: ${answer}`;
+    document.getElementById("result").innerHTML = correctAnswer;
+    window.setTimeout(this.nextProblem, 4000);
+  },
+
   submit() {
     let { newNumber, answer } = this.state;
     let number = parseInt(newNumber);
@@ -73,7 +83,7 @@ getInitialState() {
 
     this.clearVal();
     document.getElementById("equation").innerHTML = '';
-    window.setTimeout(this.nextProblem, 5000);
+    window.setTimeout(this.nextProblem, 4000);
 
   },
 
@@ -91,40 +101,40 @@ getInitialState() {
       <tbody>
         <tr>
           <td>
-            <button onClick={this.addVal} id="7">7</button>
+            <button className="btn btn-default" onClick={this.addVal} id="7">7</button>
           </td>
           <td>
-            <button onClick={this.addVal} id="8">8</button>
+            <button className="btn btn-default" onClick={this.addVal} id="8">8</button>
           </td>
           <td>
-            <button onClick={this.addVal} id="9">9</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button onClick={this.addVal} id="4">4</button>
-          </td>
-          <td>
-            <button onClick={this.addVal} id="5">5</button>
-          </td>
-          <td>
-            <button onClick={this.addVal} id="6">6</button>
+            <button className="btn btn-default" onClick={this.addVal} id="9">9</button>
           </td>
         </tr>
         <tr>
           <td>
-            <button onClick={this.addVal} id="1">1</button>
+            <button className="btn btn-default" onClick={this.addVal} id="4">4</button>
           </td>
           <td>
-            <button onClick={this.addVal} id="2">2</button>
+            <button className="btn btn-default" onClick={this.addVal} id="5">5</button>
           </td>
           <td>
-            <button onClick={this.addVal} id="3">3</button>
+            <button className="btn btn-default" onClick={this.addVal} id="6">6</button>
           </td>
         </tr>
         <tr>
           <td>
-            <button onClick={this.addVal} id="0">0</button>
+            <button className="btn btn-default" onClick={this.addVal} id="1">1</button>
+          </td>
+          <td>
+            <button className="btn btn-default" onClick={this.addVal} id="2">2</button>
+          </td>
+          <td>
+            <button className="btn btn-default" onClick={this.addVal} id="3">3</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button className="btn btn-default" onClick={this.addVal} id="0">0</button>
           </td>
           <td></td>
           <td>
@@ -138,9 +148,10 @@ getInitialState() {
       <div id="input">
         <h3>{newNumber}</h3>
       </div>
-      <button onClick={this.submit} id="submit">Submit</button>
-      <button onClick={this.clearVal}>Clear</button>
-      <button onClick={this.newProblem}>New Problem</button>
+      <button onClick={this.submit} className="btn btn-success" id="submit">Submit</button>
+      <button onClick={this.clearVal} className="btn btn-default">Clear</button>
+      <button onClick={this.skip} className="btn btn-default">Skip</button>
+      <button onClick={this.newProblem} className="btn btn-primary">New Problem</button>
 
       <h4 id="equation"></h4>
 
