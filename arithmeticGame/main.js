@@ -31,6 +31,14 @@ getInitialState() {
     this.setState({newNumber: ''});
   },
 
+  start() {
+    // let buttons = document.getElementById("buttons");
+    document.getElementById("buttons").removeAttribute("class");
+    document.getElementById("table").removeAttribute("class");
+    document.getElementById("start").className = "hide";
+    this.newProblem();
+  },
+
   newProblem() {
     let num1 = this.randNumber();
     let num2 = this.randNumber();
@@ -109,7 +117,7 @@ getInitialState() {
       <div className="text-center">
       <h1>Arithmetic Game</h1>
 
-      <table>
+      <table id="table" className="hide">
       <tbody>
         <tr>
           <td>
@@ -160,16 +168,18 @@ getInitialState() {
       <div id="input">
         <h3>{newNumber}</h3>
       </div>
-      <button onClick={this.submit} className="btn btn-success" id="submit">Submit</button>
-      <button onClick={this.clearVal} className="btn btn-default">Clear</button>
-      <button onClick={this.skip} className="btn btn-default">Skip</button>
-      <button onClick={this.newProblem} className="btn btn-primary">New Problem</button>
+      <div id="buttons" className="hide">
+        <button onClick={this.submit} className="btn btn-success" id="submit">Submit</button>
+        <button onClick={this.clearVal} className="btn btn-default" id="clear">Clear</button>
+        <button onClick={this.skip} className="btn btn-default" id="clear">Skip</button>
+        <h6 id="score">Score: {score}</h6>
+      </div>
+      <button onClick={this.start} className="btn btn-primary" id="start">Start</button>
 
       <h4 id="equation"></h4>
 
       <h4 id="result"></h4>
 
-      <h6 id="score">Score: {score}</h6>
 
       </div>
       </div>

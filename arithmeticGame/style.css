@@ -5,3 +5,7 @@
 table {
   margin: auto;
 }
+
+.hide {
+  displsy: none !important;
+}
