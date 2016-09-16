@@ -5,7 +5,8 @@ getInitialState() {
     newNumber: '',
     num1: 0,
     num2: 0,
-    answer: 0
+    answer: 0,
+    score: 0
   }
 },
 
@@ -55,13 +56,22 @@ getInitialState() {
     if (!answer) {
       return;
     }
+    this.decreaseScore();
     let correctAnswer = `Answer: ${answer}`;
     document.getElementById("result").innerHTML = correctAnswer;
     window.setTimeout(this.nextProblem, 4000);
   },
 
+  increaseScore() {
+    this.setState({score: this.state.score + 1});
+  },
+
+  decreaseScore() {
+    this.setState({score: this.state.score - 1});
+  },
+
   submit() {
-    let { newNumber, answer } = this.state;
+    let { newNumber, answer, } = this.state;
     let number = parseInt(newNumber);
     let message;
     if (!answer || !number) {
@@ -72,10 +82,12 @@ getInitialState() {
 
     if (number === answer) {
       message = "CORRECT!!"
-      console.log("CORRECT!");
+      // console.log("CORRECT!");
+      this.increaseScore();
     } else {
       message = `WRONG! ${answer} was the correct answer`;
-      console.log("INCORRECT!");
+      // console.log("INCORRECT!");
+      this.decreaseScore();
     }
 
     document.getElementById("result").innerHTML = message;
@@ -88,7 +100,7 @@ getInitialState() {
   },
 
   render() {
-    let { newNumber, num1, num2 } = this.state;
+    let { newNumber, num1, num2, score } = this.state;
     // console.log(randNumber());
 
     return (
@@ -156,6 +168,8 @@ getInitialState() {
       <h4 id="equation"></h4>
 
       <h4 id="result"></h4>
+
+      <h6 id="score">Score: {score}</h6>
 
       </div>
       </div>
